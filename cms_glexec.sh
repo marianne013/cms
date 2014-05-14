@@ -1,14 +1,13 @@
 #!/bin/bash
 
+# script to list all available information on cms users jobs run via pilot accounts 
+# in a human/script readable format.
+
 # format stuff nicely
 psx() {
     export PS_FORMAT=user:16,pid,%cpu,%mem,vsz,rss,tty,stat,start,time,command; ps ax;
 }
 
-# format this differently
-
-# echo -e "\n"
-# echo "node: " `hostname`
 
 # get a list of all the batch jobs on this node
 
