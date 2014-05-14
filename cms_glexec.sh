@@ -26,7 +26,7 @@ do
     DIRAGE=`stat -c '%Z' ${JOB}`
 
 # in this case, just ignore the directory, this will make it look very old     
-    if [  -z "$DIRAGE" ]; then
+    if [ -z "$DIRAGE" ]; then
 	DIRAGE='0'
     fi
 
@@ -48,6 +48,16 @@ do
     # in principle there should be only one, but this is CMS
 
     CMSJOB=`psx | grep ${JOB} | grep cmsRun | grep -v "/usr/bin/time"`
+    # the output typically looks like this:
+    # glx-cms399 16639 98.3 5.7 1177876 933784 ? Rl 15:45:51 01:59:55 cmsRun -j /srv/localstage/scratch/4966592.1.grid.q/wiwKDm4ZM4jn3dFDVpGiSQRqaTsoMnABFKDmDKHKDmABFKDmaV0iin/glide_mbz2OC/execute/dir_14760/crab_fjr_1240.xml -p pset.py
+    # check that this isn't empty to catch edge conditions
+    if [ -z "$CMSJOB" ]; then
+	echo "Sanity check: No cmsRun found for " ${JOB} " on " `hostname`
+	# maybe those are pilot jobs as well and should go there ?
+        continue
+    fi
+
+
 
     # now extract the linux user it's running as and possible the project name and the DN
     # these commands only makes ssense when the job is actually running, not when the pilot 
@@ -64,7 +74,7 @@ do
 	sanitycheck=`ls ${JOB}/*/glide*/execute/dir*/_condor_stdout | wc -l`
 #	echo $sanitycheck
 	if [ $sanitycheck -gt 1 ]; then
-	    echo "Sanity check fails for " ${JOB} " on " `hostname`
+	    echo "Sanity check: More that one _condor_stdout found for " ${JOB} " on " `hostname`
 	    # leave this for now
 	    continue
 	fi    
