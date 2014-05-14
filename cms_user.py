@@ -15,7 +15,7 @@ def print_help():
     print "cms_user.py [no arguments]: prints overview"
     print "cms_user.py -w [wnname]: prints all info for given WN"
     print "cms_user.py -r: prints raw data (debugging option)"
-    print "cms_user.py -o [wn/dn/crabid]"
+    print "cms_user.py -o [wn/dn/crabid] - one argument only, please"
     print "cms_user.py expects cmsblah.txt as input"
 def main(argv):
     
@@ -135,17 +135,17 @@ def main(argv):
         
         # now loop over the result
         if print_this_overview == '' or print_this_overview == 'wn':
-            print "Listing number of CMS user jobs by WN"
+            print "\n***Listing number of CMS user jobs by WN"
             for wn,n_of_jobs in sorted(jobs_per_wn.iteritems()):        
                 print wn, n_of_jobs
 
         if  print_this_overview == '' or print_this_overview == 'dn':
-            print "Listing number of CMS user jobs by DN"
+            print "\n***Listing number of CMS user jobs by DN"
             for dn,n_of_jobs in sorted(jobs_per_dn.iteritems()):
                 print dn, n_of_jobs
 
         if  print_this_overview == '' or print_this_overview == 'crabid':
-            print "Listing number of CMS user jobs by CRABID"
+            print "\n***Listing number of CMS user jobs by CRABID"
             for crabid,n_of_jobs in sorted(jobs_per_crabid.iteritems()):
                 print crabid, n_of_jobs
 
