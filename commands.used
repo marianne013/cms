@@ -4,6 +4,8 @@ cms :~]  git add cms_user.py
 cms :~]  git commit -m 'added cms_user.py initial version'
 cms :~] git push origin master
 
+git status
+
 Once:
 git remote add origin https://github.com/marianne013/cms.git (repo specific)
 git clone https://github.com/marianne013/cms
