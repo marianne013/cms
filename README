@@ -1,1 +1,8 @@
-cms_user.py: analyzes output from cms_glexec.sh
+scan_wns.sh: logs into every node and runs cms_glexec.sh (found on /vols/grid/cms_glexec.sh),
+	     	      saves output to cmsblah.txt
+cms_glexec.sh: runs on each node and gathers information about CMS user jobs run under pilot DNs
+                         in a human/script readable format
+cms_user.py: analyzes output from cms_glexec.sh/scan_wns.sh (reads in cmsblah.txt)
+
+
+
